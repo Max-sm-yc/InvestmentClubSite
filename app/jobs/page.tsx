@@ -29,6 +29,15 @@ const jobGroups = [
     name: "Investment Club",
     jobs: [
       {
+        title: "Junior Analyst",
+        description:
+          "Junior Analysts work with Analysts in analysis and recommendations while preparing to analyze on their own.",
+        requirements: [
+          "Strong willingness to learn and interest in financial markets, business, and economics",
+          "Capable communications skills, willing to work both independently and as a part of a team",
+        ],
+      },
+      {
         title: "Analyst",
         description:
           "Analysts have capable understandings of fundamental analysis and directly contribute to investment analysis and recommendation.",
@@ -38,12 +47,12 @@ const jobGroups = [
         ],
       },
       {
-        title: "Junior Analyst",
+        title: "Portfolio Manager",
         description:
-          "Junior Analysts work with Analysts in analysis and recommendations while preparing to analyze on their own.",
+          "Portfolio managers lead and educate teams of analysts and manage a portion of our overall portfolio, taking ownership of their results.",
         requirements: [
-          "Strong willingness to learn and interest in financial markets, business, and economics",
-          "Capable communications skills, willing to work both independently and as a part of a team",
+          "Ability to both conduct fundamental analysis within economic backdrops as well as spot thematic trends",
+          "Strong leadership skills, capable of guiding analysts and creating a welcoming team environment",
         ],
       },
     ],
@@ -77,6 +86,23 @@ const jobGroups = [
           "Strong communication abilities to understand needs of team members",
         ],
       },
+      {
+        title: "Business Analyst",
+        description: "Business Analysts work under our Financials Team to interpret financials and operations data to uncover actionable insights.",
+        requirements: [
+          "Understanding of accounting and financial statements",
+          "Ability to translate business insights and communicate them to other teams",
+          "Strong problem solving skills to determine cause and effects",
+        ],
+      },
+      {
+        title: "Social Media Creator",
+        description: "Members of our Social Media team working under Marketing drive customer engagement in our business and products.",
+        requirements: [
+          "Capable of designing visuals for social media content",
+          "Understanding of what drives engagement for our customer base",
+        ],
+      },
     ],
   },
 ]
@@ -85,9 +111,9 @@ export default function Jobs() {
   return (
     <div className="space-y-12">
       <div className="space-y-4">
-        <h1 className="text-3xl font-bold">Club Roles</h1>
+        <h1 className="text-3xl font-bold">Roles</h1>
         <p className="text-xl text-gray-400">
-          Our team is composed of dedicated students focused on learning and innovating in a variety of fields.
+          Our team is composed of dedicated students focused on learning and innovating in a variety of fields. Here is a selection of roles that students at CCDS can enter upon joining one of our organizations. 
         </p>
       </div>
 
