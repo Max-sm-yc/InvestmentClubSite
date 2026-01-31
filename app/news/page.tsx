@@ -6,7 +6,7 @@ const newsReleases = [
     title: "Annual Report for 2025 Released",
     date: "January 31, 2025",
     summary: "Catch up on everything that the Investment Club has accomplished over the past year.",
-    link: "/news/philanthropy-2025"
+    link: "/news/report-2025"
   },
 ]
 
