@@ -19,7 +19,7 @@ export default function Navigation() {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center space-x-3">
             <Image
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-TU6Ew6E3MNTnAEj8YMcbeJaTzw15p0.png"
+              src="/logo.png"
               alt="CCDS Investment Club Logo"
               width={36}
               height={32}
