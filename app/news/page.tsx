@@ -21,7 +21,7 @@ export default function NewsPage() {
     <div className="space-y-8">
       <h1 className="text-3xl font-bold">News & Press Releases</h1>
       <p className="text-xl text-gray-300">
-        Stay up to date with the latest developments, research milestones, and community impact from the CCDS Investment Club.
+        Stay up to date with the latest developments, milestones, and community impact from the CCDS Investment Club.
       </p>
 
       <div className="grid gap-6">
