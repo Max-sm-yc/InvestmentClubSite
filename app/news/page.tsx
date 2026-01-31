@@ -3,15 +3,9 @@ import Link from "next/link"
 
 const newsReleases = [
   {
-    title: "CCDS Investment Club Expands QIS Division",
-    date: "January 24, 2026",
-    summary: "Our Quantitative Investment Strategies group has launched three new algorithmic trading models.",
-    link: "/news/qis-expansion" // You can create sub-pages later
-  },
-  {
-    title: "Annual Philanthropy Report Released",
-    date: "December 15, 2025",
-    summary: "The SCO Fund successfully distributed grants to four student-led organizations this semester.",
+    title: "Annual Report for 2025 Released",
+    date: "January 31, 2025",
+    summary: "Catch up on everything that the Investment Club has accomplished over the past year.",
     link: "/news/philanthropy-2025"
   },
 ]
