@@ -87,7 +87,7 @@ export default function Jobs() {
       <div className="space-y-4">
         <h1 className="text-3xl font-bold">Club Roles</h1>
         <p className="text-xl text-gray-400">
-          Our team is composed of dedicated students focused on learning and innovation in the financial world.
+          Our team is composed of dedicated students focused on learning and innovating in a variety of fields.
         </p>
       </div>
 
