@@ -12,14 +12,14 @@ export const metadata = {
   icons: {
     icon: [
       {
-        url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-TU6Ew6E3MNTnAEj8YMcbeJaTzw15p0.png",
+        url: "/logo.png",
         sizes: "32x32",
         type: "image/png",
       },
     ],
     shortcut: [
       {
-        url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-TU6Ew6E3MNTnAEj8YMcbeJaTzw15p0.png",
+        url: "/logo.png",
         sizes: "32x32",
         type: "image/png",
       },
