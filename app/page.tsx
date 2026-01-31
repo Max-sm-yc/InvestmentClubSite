@@ -6,15 +6,15 @@ export default function Home() {
   const divisions = [
     {
       name: "QIS",
-      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-jHl4z3Klolj3f7ZJNpjXVMV3TVUers.png",
+      image: "/quantitative.png",
     },
     {
       name: "Fundamental Team",
-      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-o5DdPBVvaLLJReWfgnPSVcn36y7QuN.png",
+      image: "/fundamental.png",
     },
     {
       name: "SCO Fund",
-      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-ZZ49erlpbd52E0PtdYMkqAEfvyJKWV.png",
+      image: "/SCO.png",
     },
     {
       name: "Birdfeeder",
