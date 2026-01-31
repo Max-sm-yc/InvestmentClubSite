@@ -31,8 +31,7 @@ export default function Home() {
       <div className="flex flex-col items-center justify-center space-y-12 max-w-4xl mx-auto px-4">
         <h1 className="text-4xl font-bold mb-6 text-center">Welcome to the CCDS Investment Club</h1>
         <p className="text-xl mb-8 text-center">
-          We are dedicated to educating the next generation of investors by giving students real world experience in the
-          world of investing.
+          We are dedicated to educating the next generation of investors, engineers, and leaders by giving students real world experience in investing and business.
         </p>
 
         <section className="w-full py-8">
