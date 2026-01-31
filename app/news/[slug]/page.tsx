@@ -61,7 +61,7 @@ export default function PostLayout({ params }: { params: { slug: string } }) {
         </section>
 
         <div className="pt-4">
-          <h3 className="text-2xl font-semibold text-white mb-4">Background</h3>
+          <h3 className="text-2xl font-semibold text-white mb-4">Description</h3>
           <p className="text-lg leading-relaxed">
             {post.content}
           </p>
