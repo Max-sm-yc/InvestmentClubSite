@@ -32,8 +32,73 @@ const currentTeam = [
     bio: "",
   },
   {
+    name: "Aarnav Narayanan",
+    title: "Marketing | Birdfeeder",
+    bio: "",
+  },
+  {
+    name: "Andrea Sgro Plaut",
+    title: "Social Media | Birdfeeder",
+    bio: "",
+  },
+  {
+    name: "Automne Beauchamp",
+    title: "Operations | Birdfeeder",
+    bio: "",
+  },
+  {
+    name: "Benjamin Abes-Feldman",
+    title: "Social Media | Birdfeeder",
+    bio: "",
+  },
+  {
+    name: "Dakota Moesker",
+    title: "Business Analyst | Birdfeeder",
+    bio: "",
+  },
+  {
+    name: "Dima Chernovol",
+    title: "Operations | Birdfeeder",
+    bio: "",
+  },
+  {
     name: "Eric Niu",
     title: "Data Scientist | Birdfeeder",
+    bio: "",
+  },
+  {
+    name: "Hayden Reaves",
+    title: "Marketing | Birdfeeder",
+    bio: "",
+  },
+  {
+    name: "Jack Fontenot",
+    title: "Operations | Birdfeeder",
+    bio: "",
+  },
+  {
+    name: "Kevin Li",
+    title: "Business Analyst | Birdfeeder",
+    bio: "",
+  },
+  {
+    name: "Naina Menon",
+    title: "Operations | Birdfeeder",
+    bio: "",
+  },
+  {
+    name: "Sasha Slepnev",
+    title: "Data Engineer | Birdfeeder",
+    bio: "",
+  },
+    {
+    name: "Weichu Wang",
+    title: "Operations | Birdfeeder",
+    bio: "",
+  },
+  {
+    name: "William Zhu",
+    title: "Business Analyst | Birdfeeder",
     bio: "",
   },
 ]
