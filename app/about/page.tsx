@@ -82,6 +82,11 @@ const currentTeam = [
     bio: "",
   },
   {
+    name: "Leah Schwartz",
+    title: "Operations | Birdfeeder, Investment Club Analyst",
+    bio: "",
+  },
+  {
     name: "Naina Menon",
     title: "Operations | Birdfeeder",
     bio: "",
