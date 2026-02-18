@@ -2,7 +2,6 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, FileDown, Clock } from "lucide-react"
 import { notFound } from "next/navigation"
-// Assuming your JSON is in src/lib/news-data.json
 import newsData from "@/lib/news-data.json" 
 
 export default function PostLayout({ params }: { params: { slug: string } }) {
@@ -47,22 +46,25 @@ export default function PostLayout({ params }: { params: { slug: string } }) {
       </header>
 
       <div className="prose prose-invert max-w-none text-gray-300 space-y-8">
-        <section className="bg-blue-900/10 border-l-4 border-blue-500 p-8 rounded-r-lg flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="space-y-1">
-            <h3 className="text-white text-lg font-semibold m-0">Official Document Available</h3>
-            <p className="text-gray-400 m-0">Download the full verified press release in PDF format.</p>
-          </div>
-          <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700 shrink-0">
-            <a href={post.pdfUrl} download={`${post.slug}.pdf`}>
-              <FileDown className="mr-2 h-5 w-5" />
-              Download PDF
-            </a>
-          </Button>
-        </section>
+        {/* Conditional Rendering: Only shows if post.pdfUrl exists in the JSON */}
+        {post.pdfUrl && (
+          <section className="bg-blue-900/10 border-l-4 border-blue-500 p-8 rounded-r-lg flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="space-y-1">
+              <h3 className="text-white text-lg font-semibold m-0">Official Document Available</h3>
+              <p className="text-gray-400 m-0">Download the full verified press release in PDF format.</p>
+            </div>
+            <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700 shrink-0">
+              <a href={post.pdfUrl} download={`${post.slug}.pdf`}>
+                <FileDown className="mr-2 h-5 w-5" />
+                Download PDF
+              </a>
+            </Button>
+          </section>
+        )}
 
         <div className="pt-4">
           <h3 className="text-2xl font-semibold text-white mb-4">Description</h3>
-          <p className="text-lg leading-relaxed">
+          <p className="text-lg leading-relaxed whitespace-pre-wrap">
             {post.content}
           </p>
         </div>
