@@ -10,6 +10,7 @@ export default async function AdminReleasesPage() {
   if (!isAuth) redirect("/admin/login")
 
   const releases = await getReleases()
+  const blobReady = !!process.env.BLOB_READ_WRITE_TOKEN
 
   return (
     <div className="max-w-4xl mx-auto py-12 px-6 space-y-8">
@@ -47,6 +48,16 @@ export default async function AdminReleasesPage() {
           </Link>
         </div>
       </div>
+
+      {/* Storage warning */}
+      {!blobReady && (
+        <div className="bg-yellow-900/20 border border-yellow-700 rounded-xl px-5 py-4 text-sm text-yellow-300 space-y-1">
+          <p className="font-semibold">Storage not configured — releases cannot be saved.</p>
+          <p className="text-yellow-400/80">
+            Go to your Vercel project → <strong>Storage</strong> → create a <strong>Blob</strong> store and connect it to this project. Vercel will automatically add <code className="bg-yellow-900/40 px-1 rounded">BLOB_READ_WRITE_TOKEN</code> to your environment variables.
+          </p>
+        </div>
+      )}
 
       {/* Releases list */}
       {releases.length === 0 ? (
