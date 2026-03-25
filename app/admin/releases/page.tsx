@@ -1,7 +1,7 @@
 import { checkAuth, logoutAction } from "../actions"
 import { redirect } from "next/navigation"
 import Link from "next/link"
-import newsData from "@/lib/news-data.json"
+import { getReleases } from "@/lib/releases"
 import { FileDown, Plus, LogOut, ExternalLink } from "lucide-react"
 import DeleteForm from "./DeleteForm"
 
@@ -9,14 +9,7 @@ export default async function AdminReleasesPage() {
   const isAuth = await checkAuth()
   if (!isAuth) redirect("/admin/login")
 
-  const releases = newsData as Array<{
-    slug: string
-    title: string
-    date: string
-    summary: string
-    content: string
-    pdfUrl?: string
-  }>
+  const releases = await getReleases()
 
   return (
     <div className="max-w-4xl mx-auto py-12 px-6 space-y-8">

@@ -2,13 +2,12 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, FileDown, Clock } from "lucide-react"
 import { notFound } from "next/navigation"
-import newsData from "@/lib/news-data.json" 
+import { getReleases } from "@/lib/releases"
 
-export default function PostLayout({ params }: { params: { slug: string } }) {
-  // Look up the specific article by its slug
-  const post = newsData.find((p) => p.slug === params.slug)
+export default async function PostLayout({ params }: { params: { slug: string } }) {
+  const releases = await getReleases()
+  const post = releases.find((p) => p.slug === params.slug)
 
-  // If the slug doesn't exist in our JSON, show the 404 page
   if (!post) {
     notFound()
   }
@@ -25,7 +24,7 @@ export default function PostLayout({ params }: { params: { slug: string } }) {
 
       <header className="space-y-6 mb-12">
         <div className="flex items-center gap-4 text-blue-400 font-medium text-sm tracking-wide uppercase">
-          <span>{post.category || "News Release"}</span>
+          <span>{(post as any).category || "News Release"}</span>
           <span className="text-gray-600">•</span>
           <div className="flex items-center gap-1">
             <Clock className="h-3 w-3" />
@@ -46,7 +45,6 @@ export default function PostLayout({ params }: { params: { slug: string } }) {
       </header>
 
       <div className="prose prose-invert max-w-none text-gray-300 space-y-8">
-        {/* Conditional Rendering: Only shows if post.pdfUrl exists in the JSON */}
         {post.pdfUrl && (
           <section className="bg-blue-900/10 border-l-4 border-blue-500 p-8 rounded-r-lg flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="space-y-1">

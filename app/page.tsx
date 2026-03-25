@@ -3,11 +3,11 @@ import Link from "next/link"
 import Image from "next/image"
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { ArrowRight } from "lucide-react"
-import newsData from "@/lib/news-data.json"
+import { getReleases } from "@/lib/releases"
 
-export default function Home() {
-  // Get the most recent news article from your JSON
-  const latestNews = newsData[0];
+export default async function Home() {
+  const releases = await getReleases()
+  const latestNews = releases[0];
 
   const divisions = [
     { name: "QIS", image: "/quantitative.png" },
@@ -39,34 +39,34 @@ export default function Home() {
         <section className="w-full py-8">
           <h2 className="text-2xl font-semibold text-center mb-2">Our Sponsors</h2>
           <p className="text-gray-400 text-center mb-6">Made possible by the generosity of our sponsors.</p>
-          <div className="flex flex-wrap justify-center items-center gap-6">
-            <div className="bg-gray-800 p-6 rounded-lg">
+          <div className="flex flex-nowrap justify-center items-stretch gap-6">
+            <div className="bg-gray-800 px-8 py-5 rounded-lg flex items-center justify-center opacity-90 hover:opacity-100 transition-opacity">
               <Image
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-byjY3e05j2G7zA7uORfrKoQKRufF5C.png"
                 alt="The Vredeveld Family"
-                width={240}
+                width={220}
                 height={48}
-                className="opacity-90 hover:opacity-100 transition-opacity"
+                className="object-contain"
               />
             </div>
-            <div className="bg-gray-800 p-6 rounded-lg flex flex-col items-start opacity-90 hover:opacity-100 transition-opacity">
-              <span className="text-white text-[1.75rem] font-light leading-tight tracking-tight">
+            <div className="bg-gray-800 px-8 py-5 rounded-lg flex flex-col justify-center opacity-90 hover:opacity-100 transition-opacity">
+              <span className="text-white text-[1.75rem] font-light leading-tight tracking-tight whitespace-nowrap">
                 Morgan Stanley
               </span>
-              <span className="text-white text-[0.6rem] font-bold tracking-[0.18em] uppercase mt-1 leading-snug">
+              <span className="text-white text-[0.6rem] font-bold tracking-[0.18em] uppercase mt-1 leading-snug whitespace-nowrap">
                 Private Wealth Management
               </span>
-              <span className="text-white text-[0.6rem] font-bold tracking-[0.18em] uppercase leading-snug">
+              <span className="text-white text-[0.6rem] font-bold tracking-[0.18em] uppercase leading-snug whitespace-nowrap">
                 Sprenkle Stacy Group
               </span>
             </div>
-            <div className="bg-gray-800 p-6 rounded-lg">
+            <div className="bg-gray-800 px-8 py-5 rounded-lg flex items-center justify-center opacity-90 hover:opacity-100 transition-opacity">
               <Image
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/JaneStreet-r8U11JJsLjq5VPwXeWr5jAlLgysLTh.png"
                 alt="Jane Street Logo"
-                width={240}
+                width={220}
                 height={48}
-                className="opacity-90 hover:opacity-100 transition-opacity"
+                className="object-contain"
               />
             </div>
           </div>
