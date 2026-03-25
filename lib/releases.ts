@@ -14,17 +14,17 @@ const RELEASES_KEY = "data/releases.json"
 
 /** Read releases — from Blob in production, static JSON as fallback. */
 export async function getReleases(): Promise<Release[]> {
-  if (!process.env.BLOB_READ_WRITE_TOKEN) {
-    return staticNewsData as Release[]
-  }
   try {
-    const { blobs } = await list({ prefix: RELEASES_KEY })
-    if (blobs.length > 0) {
-      const res = await fetch(blobs[0].url, { cache: "no-store" })
-      if (res.ok) return res.json()
+    if (process.env.BLOB_READ_WRITE_TOKEN) {
+      const { blobs } = await list({ prefix: RELEASES_KEY })
+      if (blobs.length > 0) {
+        const res = await fetch(blobs[0].url, { cache: "no-store" })
+        if (res.ok) return await res.json()
+      }
     }
-  } catch {}
-  // Blob not yet seeded — return static file
+  } catch {
+    // Blob unavailable or not yet seeded — fall through to static file
+  }
   return staticNewsData as Release[]
 }
 
