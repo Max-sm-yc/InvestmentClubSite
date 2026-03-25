@@ -65,31 +65,3 @@ export async function deletePdf(url: string): Promise<void> {
     await del(url)
   } catch {}
 }
-
-
-/** Persist releases array to Blob. */
-export async function saveReleases(releases: Release[]): Promise<void> {
-  await put(RELEASES_KEY, JSON.stringify(releases, null, 2), {
-    access: "public",
-    addRandomSuffix: false,
-    contentType: "application/json",
-  })
-}
-
-/** Upload a PDF and return its public Blob URL. */
-export async function uploadPdf(slug: string, file: File): Promise<string> {
-  const blob = await put(`pdfs/${slug}.pdf`, file, {
-    access: "public",
-    addRandomSuffix: false,
-    contentType: "application/pdf",
-  })
-  return blob.url
-}
-
-/** Delete a PDF by its URL (no-op for legacy local paths). */
-export async function deletePdf(url: string): Promise<void> {
-  if (!url.startsWith("https://")) return // local /pdfs/ file — skip
-  try {
-    await del(url)
-  } catch {}
-}
