@@ -1,8 +1,10 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
-import newsData from "@/lib/news-data.json" // Import the same data
+import { getReleases } from "@/lib/releases"
 
-export default function NewsPage() {
+export default async function NewsPage() {
+  const releases = await getReleases()
+
   return (
     <div className="space-y-8">
       <h1 className="text-3xl font-bold">News & Press Releases</h1>
@@ -11,7 +13,7 @@ export default function NewsPage() {
       </p>
 
       <div className="grid gap-6">
-        {newsData.map((release) => (
+        {releases.map((release) => (
           <Card key={release.slug} className="bg-gray-800 border-none hover:bg-gray-750 transition-colors">
             <CardHeader>
               <div className="text-sm text-blue-400 font-medium mb-1">{release.date}</div>
@@ -21,7 +23,6 @@ export default function NewsPage() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              {/* This link is now automatically correct because it uses the slug */}
               <Link href={`/news/${release.slug}`} className="text-sm font-semibold text-white hover:underline">
                 Read full release →
               </Link>

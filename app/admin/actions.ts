@@ -2,29 +2,10 @@
 
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
-import fs from "fs"
-import path from "path"
+import { revalidatePath } from "next/cache"
+import { getReleases, saveReleases, uploadPdf, deletePdf, type Release } from "@/lib/releases"
 
-const DATA_PATH = path.join(process.cwd(), "lib", "news-data.json")
-const PDF_DIR = path.join(process.cwd(), "public", "pdfs")
-
-function readReleases(): Release[] {
-  const raw = fs.readFileSync(DATA_PATH, "utf-8")
-  return JSON.parse(raw)
-}
-
-function writeReleases(releases: Release[]) {
-  fs.writeFileSync(DATA_PATH, JSON.stringify(releases, null, 2) + "\n", "utf-8")
-}
-
-export interface Release {
-  slug: string
-  title: string
-  date: string
-  summary: string
-  content: string
-  pdfUrl?: string
-}
+export type { Release }
 
 // ── Auth ──────────────────────────────────────────────────────────────────────
 
@@ -33,10 +14,8 @@ export async function loginAction(_prevState: unknown, formData: FormData) {
   const adminPassword = process.env.ADMIN_PASSWORD
 
   if (!adminPassword) {
-    // If no password set, reject all logins for safety
     return { error: "Admin access is not configured. Set ADMIN_PASSWORD env variable." }
   }
-
   if (password !== adminPassword) {
     return { error: "Incorrect password." }
   }
@@ -45,7 +24,7 @@ export async function loginAction(_prevState: unknown, formData: FormData) {
   cookieStore.set("admin_session", adminPassword, {
     httpOnly: true,
     sameSite: "strict",
-    maxAge: 60 * 60 * 8, // 8 hours
+    maxAge: 60 * 60 * 8,
     path: "/",
   })
 
@@ -90,8 +69,9 @@ export async function createReleaseAction(_prevState: unknown, formData: FormDat
     return { error: "Title, date, summary, and content are required." }
   }
 
+  const releases = await getReleases()
+
   // Generate a unique slug
-  const releases = readReleases()
   let slug = slugify(title)
   let counter = 1
   const existingSlugs = new Set(releases.map((r) => r.slug))
@@ -99,22 +79,18 @@ export async function createReleaseAction(_prevState: unknown, formData: FormDat
     slug = `${slugify(title)}-${counter++}`
   }
 
-  // Save PDF if provided
+  // Upload PDF to Vercel Blob if provided
   let pdfUrl: string | undefined
   if (pdfFile && pdfFile.size > 0) {
-    if (!fs.existsSync(PDF_DIR)) {
-      fs.mkdirSync(PDF_DIR, { recursive: true })
-    }
-    const filename = `${slug}.pdf`
-    const buffer = Buffer.from(await pdfFile.arrayBuffer())
-    fs.writeFileSync(path.join(PDF_DIR, filename), buffer)
-    pdfUrl = `/pdfs/${filename}`
+    pdfUrl = await uploadPdf(slug, pdfFile)
   }
 
   const newRelease: Release = { slug, title, date, summary, content, ...(pdfUrl ? { pdfUrl } : {}) }
-  releases.unshift(newRelease) // newest first
-  writeReleases(releases)
+  releases.unshift(newRelease)
+  await saveReleases(releases)
 
+  revalidatePath("/news")
+  revalidatePath("/")
   redirect("/admin/releases")
 }
 
@@ -127,20 +103,19 @@ export async function deleteReleaseAction(slug: string) {
   const isAuth = await checkAuth()
   if (!isAuth) return { error: "Unauthorized" }
 
-  const releases = readReleases()
+  const releases = await getReleases()
   const target = releases.find((r) => r.slug === slug)
 
-  // Delete associated PDF file if it lives in /public/pdfs/ and is only used by this release
   if (target?.pdfUrl) {
     const usedElsewhere = releases.some((r) => r.slug !== slug && r.pdfUrl === target.pdfUrl)
     if (!usedElsewhere) {
-      const pdfPath = path.join(process.cwd(), "public", target.pdfUrl)
-      if (fs.existsSync(pdfPath)) {
-        fs.unlinkSync(pdfPath)
-      }
+      await deletePdf(target.pdfUrl)
     }
   }
 
-  writeReleases(releases.filter((r) => r.slug !== slug))
+  await saveReleases(releases.filter((r) => r.slug !== slug))
+
+  revalidatePath("/news")
+  revalidatePath("/")
   redirect("/admin/releases")
 }
