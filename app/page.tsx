@@ -39,7 +39,7 @@ export default function Home() {
         <section className="w-full py-8">
           <h2 className="text-2xl font-semibold text-center mb-2">Our Sponsors</h2>
           <p className="text-gray-400 text-center mb-6">Made possible by the generosity of our sponsors.</p>
-          <div className="flex justify-center items-center gap-8">
+          <div className="flex flex-wrap justify-center items-center gap-6">
             <div className="bg-gray-800 p-6 rounded-lg">
               <Image
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-byjY3e05j2G7zA7uORfrKoQKRufF5C.png"
@@ -48,6 +48,17 @@ export default function Home() {
                 height={48}
                 className="opacity-90 hover:opacity-100 transition-opacity"
               />
+            </div>
+            <div className="bg-gray-800 p-6 rounded-lg flex flex-col items-start opacity-90 hover:opacity-100 transition-opacity">
+              <span className="text-white text-[1.75rem] font-light leading-tight tracking-tight">
+                Morgan Stanley
+              </span>
+              <span className="text-white text-[0.6rem] font-bold tracking-[0.18em] uppercase mt-1 leading-snug">
+                Private Wealth Management
+              </span>
+              <span className="text-white text-[0.6rem] font-bold tracking-[0.18em] uppercase leading-snug">
+                Sprenkle Stacy Group
+              </span>
             </div>
             <div className="bg-gray-800 p-6 rounded-lg">
               <Image
