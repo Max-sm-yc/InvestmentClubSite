@@ -46,6 +46,10 @@ export async function checkAuth(): Promise<boolean> {
 
 // ── Releases CRUD ─────────────────────────────────────────────────────────────
 
+function blobConfigured() {
+  return !!process.env.BLOB_READ_WRITE_TOKEN
+}
+
 function slugify(title: string): string {
   return title
     .toLowerCase()
@@ -58,6 +62,7 @@ function slugify(title: string): string {
 export async function createReleaseAction(_prevState: unknown, formData: FormData) {
   const isAuth = await checkAuth()
   if (!isAuth) return { error: "Unauthorized" }
+  if (!blobConfigured()) return { error: "Storage is not configured. Add BLOB_READ_WRITE_TOKEN to your Vercel environment variables (Storage → Blob → Connect Store)." }
 
   const title = (formData.get("title") as string).trim()
   const date = (formData.get("date") as string).trim()
@@ -102,6 +107,7 @@ export async function deleteReleaseFormAction(formData: FormData) {
 export async function deleteReleaseAction(slug: string) {
   const isAuth = await checkAuth()
   if (!isAuth) return { error: "Unauthorized" }
+  if (!blobConfigured()) return { error: "Storage is not configured. Add BLOB_READ_WRITE_TOKEN to your Vercel environment variables." }
 
   const releases = await getReleases()
   const target = releases.find((r) => r.slug === slug)
