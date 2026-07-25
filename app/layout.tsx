@@ -40,7 +40,6 @@ export default function RootLayout({
         <main className="flex-grow container mx-auto px-4 py-8">{children}</main>
         <footer className="bg-gray-800 py-6 text-center text-sm">
           <div className="container mx-auto px-4">
-            <p className="mb-2">&copy; 2023 CCDS Investment Club</p>
             <p className="mb-2">
               Contact:{" "}
               <a href="mailto:sunm@countryday.net" className="hover:underline">
